@@ -56,7 +56,7 @@ Ensure you have the following installed:
 7. **Access the Application**:
    Open `http://127.0.0.1:8000/` in your browser.
 
-### Usage
+## Usage
 - Register/Login to access prediction features.
 - Navigate to the prediction page, input your health data, and get results.
 - View past predictions on your profile page.
