@@ -6,22 +6,21 @@ from django.contrib import messages
 import pandas as pd
 import numpy as np
 import pickle
-from .services.pdf_export import generate_pdf  # Import PDF export service
+from .services.pdf_export import generate_pdf  
 from .services.health_advice import get_health_advice
-from .services.graphs import generate_insulin_graph, generate_bp_graph, generate_bmi_graph  # Import graph service
+from .services.graphs import generate_insulin_graph, generate_bp_graph, generate_bmi_graph  
 from .models import UserResult
 from .forms import UserRegistrationForm, UserLoginForm, PredictionForm
 from django.http import HttpResponse
 
 def load_model():
     """Load the trained model and preprocessor."""
-    with open(r'C:\Users\jovan\OneDrive\Desktop\DiabetesPrediction\predictor\diabetes_model.pkl', 'rb') as file:
+    with open(r'C:\workspace\DiabetesPrediction\predictor\diabetes_model.pkl', 'rb') as file:
         data = pickle.load(file)
     return data['model'], data['preprocessor'], data['accuracy']
 
 @login_required
 def export_pdf(request):
-    # Call the generate_pdf function from the service
     return generate_pdf(request.user)
 
 def home(request):
@@ -64,15 +63,13 @@ def predict(request):
     if request.method == 'POST':
         form = PredictionForm(request.POST)
 
-        # Validate the form data before proceeding
         if form.is_valid():
             form_data = form.cleaned_data
-            # Continue with prediction logic...
             return redirect('result')
         else:
-            return render(request, 'predict.html', {'form': form})  # Re-render form with errors
+            return render(request, 'predict.html', {'form': form})  
     else:
-        form = PredictionForm()  # Display empty form on GET request
+        form = PredictionForm()  
         return render(request, 'predict.html', {'form': form})
 
 

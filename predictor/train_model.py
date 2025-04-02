@@ -3,10 +3,10 @@ import numpy as np
 import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
-from random_forest import RandomForest  # Assuming this is your custom RandomForest implementation
+from random_forest import RandomForest  
 
 # Load and process data
-data = pd.read_csv(r'C:\Users\jovan\OneDrive\Desktop\DiabetesPrediction\predictor\diabetes.csv')
+data = pd.read_csv(r'C:\workspace\DiabetesPrediction\predictor\diabetes.csv')
 
 # Replace zeros with NaN for specific columns (impute later)
 cols_with_zeros = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
@@ -32,7 +32,7 @@ predictions = model.predict(X_test)
 accuracy = np.mean(predictions == y_test)
 
 # Save the model, preprocessor, and accuracy
-with open(r'C:\Users\jovan\OneDrive\Desktop\DiabetesPrediction\predictor\diabetes_model.pkl', 'wb') as file:
+with open(r'C:\workspace\DiabetesPrediction\predictor\diabetes_model.pkl', 'wb') as file:
     pickle.dump({
         'model': model,
         'preprocessor': imputer,  # Save the imputer here
