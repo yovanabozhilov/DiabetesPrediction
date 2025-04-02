@@ -1,7 +1,7 @@
 import pickle
 import pandas as pd
 
-MODEL_PATH = r'C:\Users\jovan\OneDrive\Desktop\DiabetesPrediction\predictor\diabetes_model.pkl'
+MODEL_PATH = r'C:\workspace\DiabetesPrediction\predictor\diabetes_model.pkl'
 
 def load_model():
     """Load the trained model, preprocessor, and accuracy."""
