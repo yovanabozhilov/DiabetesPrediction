@@ -73,8 +73,8 @@ The model is trained using the `train_model.py` script, which:
 If you need to retrain the model:
 1. Ensure you have the dataset diabetes.csv in the `predictor/` folder.
 2. Run the training script:
-```sh
-python predictor/train_model.py
-```
+   ```sh
+   python predictor/train_model.py
+   ```
 3. The trained model (`diabetes_model.pkl`) will be saved in `predictor/`.
 
