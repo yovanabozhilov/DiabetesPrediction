@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Diabetes Prediction</title>
+
+    <!-- Link to External CSS File -->
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'predict' %}">Predict Diabetes</a>
+        <a href="{% url 'profile' %}" class="active">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+
+        <!-- PDF Download Button on the Right -->
+        <div style="margin-left: auto;">
+            <a href="{% url 'export_pdf' %}" class="btn-download">Download</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Your Diabetes Test Results</h1>
+
+        {% if user_results %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Prediction</th>
+                        <th>Accuracy (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in user_results %}
+                        <tr>
+                            <td>{{ result.result_date|date:"Y-m-d H:i" }}</td>
+                            <td>{{ result.prediction }}</td>
+                            <td>{{ result.accuracy }}</td>
+                            <td>
+                                <form action="{% url 'delete_prediction' result.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- Add New Prediction Button (PLACE IT HERE) -->
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="{% url 'predict' %}" class="btn-add">Add New Prediction</a>
+            </div>
+        {% else %}
+            <div class="no-results">
+                <p>You haven't performed any diabetes predictions yet.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Diabetes Prediction App</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+/* General Body Styles */
+body {
+    background-image: url("../images/home.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #2F6755;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: black;
+}
+
+/* Form Container */
+.content-wrapper {
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    max-width: 400px;
+    margin: 60px auto;
+    width: 90%;
+}
+
+.form-container h1 {
+    color: #2F6755;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #2F6755;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 94%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Submit Button */
+.btn-submit {
+    background-color: #2F6755;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #419E98;
+}
+
+/* Error Message Styles */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.error-message p {
+    margin: 0;
+    padding: 5px;
+    border: 1px solid red;
+    background-color: #f8d7da;
+    border-radius: 4px;
+}
+
+
+/* Result and Accuracy Text */
+.result-text {
+    text-align: center;
+    color: #2F6755;
+    margin-top: 20px;
+}
+
+.accuracy-text {
+    text-align: center;
+    color: #007872;
+    margin-top: 10px;
+}
+
+/* Graph Container */
+.graph-container {
+    margin-top: 20px;
+}
+
+.graph-title {
+    text-align: center;
+}
+
+/* Health Advice */
+.health-advice {
+    margin-top: 20px;
+}
+
+.health-advice h3 {
+    color: #2F6755;
+}
+
+.health-advice ul {
+    padding-left: 20px;
+}
+
+.health-advice li {
+    margin-bottom: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #2F6755;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .content-wrapper {
+        padding: 20px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+}

@@ -1,0 +1,147 @@
+/* General Body Styles */
+body {
+    background-image: url("../images/home.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #2F6755;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: black;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    max-width: 500px;
+    margin: 60px auto;
+    width: 90%;
+}
+
+.content-wrapper h1 {
+    color: #2F6755;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Result Text */
+.result-text {
+    text-align: center;
+    color: #2F6755;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Accuracy Text */
+.accuracy-text {
+    text-align: center;
+    color: #007872;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+/* Health Advice */
+.health-advice {
+    margin-top: 30px;
+}
+
+.health-advice h3 {
+    color: #2F6755;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.health-advice ul {
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+.health-advice li {
+    margin-bottom: 8px;
+}
+
+/* Result Button (Make Another Prediction) */
+.btn-add {
+    display: inline-block;
+    background-color: #2F6755;
+    color: white;
+    padding: 12px 15px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn-add:hover {
+    background-color: #419E98;
+}
+
+/* Footer */
+footer {
+    background-color: #2F6755;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .content-wrapper {
+        padding: 20px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    .result-text {
+        font-size: 20px;
+    }
+
+    .accuracy-text {
+        font-size: 18px;
+    }
+
+    .health-advice h3 {
+        font-size: 16px;
+    }
+
+    .health-advice ul {
+        font-size: 14px;
+    }
+
+    .btn-add {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+}

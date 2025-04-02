@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - Diabetes Prediction</title>
+
+    <!-- Link to External CSS File -->
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'predict' %}" class="active">Predict Diabetes</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <div class="content-wrapper">
+        <h1>Prediction Result</h1>
+
+        <div class="result-text">
+            <p><strong>{{ result2 }}</strong></p>
+        </div>
+
+        <div class="accuracy-text">
+            <p>Accuracy: <strong>{{ accuracy }}%</strong></p>
+        </div>
+
+        {% if insulin_graph_html %}
+            <div class="graph-container">
+                <h3>Insulin Level Visualization</h3>
+                <div>{{ insulin_graph_html|safe }}</div>
+            </div>
+        {% endif %}
+
+        {% if bp_graph_html %}
+            <div class="graph-container">
+                <h3>Blood Pressure Visualization</h3>
+                <div>{{ bp_graph_html|safe }}</div>
+            </div>
+        {% endif %}
+
+        {% if bmi_graph_html %}
+            <div class="graph-container">
+                <h3>BMI Visualization</h3>
+                <div>{{ bmi_graph_html|safe }}</div>
+            </div>
+        {% endif %}
+
+        {% if advice %}
+            <div class="health-advice">
+                <h3>Health Advice:</h3>
+                <ul>
+                    {% for item in advice %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="{% url 'predict' %}" class="btn-add">Make Another Prediction</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Diabetes Prediction App</p>
+    </footer>
+</body>
+
+</html>

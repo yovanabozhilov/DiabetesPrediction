@@ -1,0 +1,120 @@
+/* styles.css */
+
+/* General Body Styles */
+body {
+    background-image: url("../images/home.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #2F6755;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    color: black;
+}
+
+.navbar a.active {
+    color: black;
+}
+
+/* Form Container */
+.content-wrapper {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 50px auto;
+    width: 90%;
+}
+
+.form-container {
+    padding: 2px;
+}
+
+.form-container h1 {
+    color: #2F6755;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #2F6755;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 93%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Submit Button */
+.btn-submit {
+    background-color: #2F6755;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 99%;
+}
+
+.btn-submit:hover {
+    background-color: #419E98;
+}
+
+/* Register Link */
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-link a {
+    color: #2F6755;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: #2F6755;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
