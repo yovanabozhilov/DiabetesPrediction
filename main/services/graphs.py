@@ -1,4 +1,3 @@
-# graph_service.py
 import plotly.graph_objects as go
 from plotly.io import to_html
 
