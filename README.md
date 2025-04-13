@@ -14,7 +14,7 @@ This project is a machine learning-based web application for predicting diabetes
 
 ## Technologies Used
 - **Backend**: Django, Python
-- **Machine Learning**: Scikit-learn, Pandas, NumPy, Custom Random Forest Implementation
+- **Machine Learning**: Scikit-learn, Pandas, NumPy, Random Forest Prediction Algorithm
 - **Frontend**: HTML, CSS, JavaScript
 - **Database**: SQLite
 
@@ -67,7 +67,7 @@ The model is trained using the `train_model.py` script, which:
 - Reads and preprocesses the diabetes dataset
 - Handles missing values using median imputation
 - Splits data into training and test sets
-- Trains a custom RandomForest model
+- Trains a RandomForest model
 - Saves the trained model for predictions
 
 If you need to retrain the model:
