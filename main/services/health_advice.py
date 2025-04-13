@@ -1,5 +1,4 @@
 def get_health_advice(values):
-    """Provide personalized health advice based on user input values."""
     advice = []
 
     bmi = values[5]
