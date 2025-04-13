@@ -9,7 +9,9 @@
     <title>User Profile - Diabetes Prediction</title>
 
     <!-- Link to External CSS File -->
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <script src="{% static 'js/profile.js' %}"></script>
 </head>
 
 <body>
@@ -28,40 +30,73 @@
     <div class="container">
         <h1>Your Diabetes Test Results</h1>
 
-        {% if user_results %}
+        {% if results_with_advice %}
             <table>
                 <thead>
                     <tr>
                         <th>Date</th>
                         <th>Prediction</th>
-                        <th>Accuracy (%)</th>
+                        <th>Details</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for result in user_results %}
-                        <tr>
-                            <td>{{ result.result_date|date:"Y-m-d H:i" }}</td>
-                            <td>{{ result.prediction }}</td>
-                            <td>{{ result.accuracy }}</td>
-                            <td>
-                                <form action="{% url 'delete_prediction' result.id %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
+                    {% for item in results_with_advice %}
+                    <tr>
+                        <td>{{ item.result.result_date|date:"Y-m-d H:i" }}</td>
+                        <td>{{ item.result.prediction }}</td>
+                        <td>
+                            <!-- Updated view button styling -->
+                            <button class="view-btn" onclick="toggleDetails('details-{{ forloop.counter }}')">View</button>
+                        </td>
+                        <td>
+                            <form action="{% url 'delete_prediction' item.result.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr id="details-{{ forloop.counter }}" style="display: none;">
+                        <td colspan="4">
+                            <!-- Updated details section -->
+                            <div class="details-container">
+                                <strong>Input Information</strong>
+                                <ul>
+                                    <li>Pregnancies: {{ item.result.pregnancies }}</li>
+                                    <li>Glucose: {{ item.result.glucose }}</li>
+                                    <li>Blood Pressure: {{ item.result.blood_pressure }}</li>
+                                    <li>Skin Thickness: {{ item.result.skin_thickness }}</li>
+                                    <li>Insulin: {{ item.result.insulin }}</li>
+                                    <li>BMI: {{ item.result.bmi }}</li>
+                                    <li>Diabetes Pedigree Function: {{ item.result.diabetes_pedigree }}</li>
+                                    <li>Age: {{ item.result.age }}</li>
+                                </ul>
+
+                                <!-- Health Advice -->
+                                <strong>Health Summary</strong>
+                                <ul>
+                                    {% for advice in item.advice %}
+                                        <li>{{ advice }}</li>
+                                    {% empty %}
+                                        <li>Your health seems great! Keep up the good work.</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <!-- Add New Prediction Button (PLACE IT HERE) -->
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="{% url 'predict' %}" class="btn-add">Add New Prediction</a>
-            </div>
         {% else %}
             <div class="no-results">
                 <p>You haven't performed any diabetes predictions yet.</p>
             </div>
         {% endif %}
+
+        <!-- Always show Add button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'predict' %}" class="btn-add">Add New Prediction</a>
+        </div>
     </div>
 
     <footer>

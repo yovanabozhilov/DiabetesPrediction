@@ -1,3 +1,4 @@
+from django.views.generic import RedirectView
 from django.urls import path
 from main import views
 
@@ -11,4 +12,5 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'), 
     path('delete_prediction/<int:result_id>/', views.delete_prediction, name='delete_prediction'), 
     path('export_pdf/', views.export_pdf, name='export_pdf'),
+    path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
 ]

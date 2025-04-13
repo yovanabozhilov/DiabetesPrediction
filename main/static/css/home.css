@@ -1,18 +1,10 @@
-/* styles.css */
-
-/* General Body Styles */
 body {
-    background-image: url("images/home.jpg");
-    background-size: auto; 
-    background-position: center center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #CAFFBF;
-    font-family: 'Arial', sans-serif;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color: #2F6755;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+                url("../images/home.jpg") center center / cover no-repeat fixed;
 }
 
 /* Navbar Styles */
@@ -20,61 +12,99 @@ body {
     background-color: #2F6755;
     padding: 15px 20px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
-    margin-right: 20px; 
+    margin-right: 20px;
     font-size: 18px;
+    transition: color 0.3s;
 }
 
-.navbar a:hover {
-    color: black;
-}
-
+.navbar a:hover,
 .navbar a.active {
-    color: black;
+    color: #000000;
 }
 
 /* Container Styles */
 .container {
     text-align: center;
-    color: #2F6755;
-    padding-top: 80px; 
+    padding: 120px 20px 40px;
+    color: white;
 }
 
-/* Button Container */
+.container h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.container p {
+    font-size: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* CTA Button */
 .btn-container {
-    margin-top: 210px;
     text-align: center;
+    margin-top: 40px;
 }
 
-/* Button Styling */
 .btn-custom {
     background-color: #419E98;
-    color: black;
-    padding: 15px 25px;
+    color: white;
+    padding: 15px 30px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 18px;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .btn-custom:hover {
     background-color: #007872;
-    color: white;
+    transform: scale(1.05);
 }
 
 /* Footer */
 footer {
     background-color: #2F6755;
-    color: white;
+    color: #f0f0f0;
     text-align: center;
-    padding: 2px;
+    padding: 10px;
+    font-size: 14px;
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar a {
+        margin: 10px 0;
+    }
+
+    .container h1 {
+        font-size: 32px;
+    }
+
+    .container p {
+        font-size: 16px;
+    }
+
+    .btn-custom {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
 }

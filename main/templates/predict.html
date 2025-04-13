@@ -9,6 +9,7 @@
     <title>Diabetes Prediction</title>
 
     <!-- Link to external CSS file -->
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% static 'css/predict.css' %}">
 </head>
 
@@ -36,98 +37,42 @@
 
                 <div class="form-group">
                     <label for="n1">Pregnancies:</label>
-                    <input type="text" name="n1" id="n1" value="{{ form_data.n1 }}" placeholder="E.g. 0, 1, 2, ..." required>
-                    {% if form.n1.errors %}
-                        <div class="error-message">
-                            {% for error in form.n1.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    <input type="text" name="n1" id="n1" placeholder="E.g. 0, 1, 2, ..." required>
                 </div>
 
                 <div class="form-group">
                     <label for="n2">Blood Sugar Level (Glucose):</label>
-                    <input type="text" name="n2" id="n2" value="{{ form_data.n2 }}" placeholder="72-130 mg/dL" required>
-                    {% if form.n2.errors %}
-                        <div class="error-message">
-                            {% for error in form.n2.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    <input type="text" name="n2" id="n2" placeholder="72-130 mg/dL" required>
                 </div>
 
                 <div class="form-group">
                     <label for="n3">Blood Pressure:</label>
-                    <input type="text" name="n3" id="n3" value="{{ form_data.n3 }}" placeholder="60–100 mmHg" required>
-                    {% if form.n3.errors %}
-                        <div class="error-message">
-                            {% for error in form.n3.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    <input type="text" name="n3" id="n3" placeholder="60–100 mmHg" required>
                 </div>
 
                 <div class="form-group">
                     <label for="n4">Skin Thickness (Triceps Skin Fold Thickness):</label>
-                    <input type="text" name="n4" id="n4" value="{{ form_data.n4 }}" placeholder="7–60 mm" required>
-                    {% if form.n4.errors %}
-                        <div class="error-message">
-                            {% for error in form.n4.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    <input type="text" name="n4" id="n4" placeholder="7–60 mm" required>
                 </div>
 
                 <div class="form-group">
                     <label for="n5">Insulin:</label>
-                    <input type="text" name="n5" id="n5" value="{{ form_data.n5 }}" placeholder="0-846 μU/mL" required>
-                    {% if form.n5.errors %}
-                        <div class="error-message">
-                            {% for error in form.n5.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    <input type="text" name="n5" id="n5" placeholder="0-846 μU/mL" required>
                 </div>
 
                 <div class="form-group">
                     <label for="n6">BMI:</label>
-                    <input type="text" name="n6" id="n6" value="{{ form_data.n6 }}" placeholder="18.5-40 kg/m²" required>
-                    {% if form.n6.errors %}
-                        <div class="error-message">
-                            {% for error in form.n6.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    <input type="text" name="n6" id="n6" placeholder="18.5-40 kg/m²" required>
                 </div>
 
                 <div class="form-group">
                     <label for="n7">Diabetes Pedigree Function (Family History Risk Score):</label>
-                    <input type="text" name="n7" id="n7" value="{{ form_data.n7 }}" placeholder="0.08-2.42" required>
-                    {% if form.n7.errors %}
-                        <div class="error-message">
-                            {% for error in form.n7.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    <input type="text" name="n7" id="n7" placeholder="0.08-2.42" required>
                 </div>
 
                 <div class="form-group">
                     <label for="n8">Age:</label>
-                    <input type="text" name="n8" id="n8" value="{{ form_data.n8 }}" placeholder="E.g. 21" required>
-                    {% if form.n8.errors %}
-                        <div class="error-message">
-                            {% for error in form.n8.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    <input type="text" name="n8" id="n8" placeholder="E.g. 21" required>
                 </div>
 
                 <button type="submit" class="btn-submit">Predict</button>

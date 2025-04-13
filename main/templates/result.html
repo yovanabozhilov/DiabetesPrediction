@@ -9,6 +9,7 @@
     <title>Prediction Result - Diabetes Prediction</title>
 
     <!-- Link to External CSS File -->
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/result.css' %}">
 </head>
 
@@ -54,7 +55,7 @@
 
         {% if advice %}
             <div class="health-advice">
-                <h3>Health Advice:</h3>
+                <h3>Health Summary:</h3>
                 <ul>
                     {% for item in advice %}
                         <li>{{ item }}</li>

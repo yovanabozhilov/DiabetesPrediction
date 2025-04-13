@@ -9,6 +9,7 @@
     <title>Login Page</title>
 
     <!-- Link to external CSS file -->
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 </head>
 
@@ -29,9 +30,18 @@
     <div class="content-wrapper">
         <div class="form-container">
             <h1>Welcome Back!</h1>
+            
+            <!-- Display error messages from the messages framework -->
+            {% if messages %}
+                <div class="error-messages">
+                    {% for message in messages %}
+                        <p class="error-message">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
             <form method="POST">
                 {% csrf_token %}
-
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" required>

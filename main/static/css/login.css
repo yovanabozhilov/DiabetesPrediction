@@ -1,8 +1,5 @@
-/* styles.css */
-
-/* General Body Styles */
 body {
-    background-image: url("../images/home.jpg");
+    background-image: url("../images/login_register.jpg");
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
@@ -13,7 +10,6 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar Styles */
 .navbar {
     background-color: #2F6755;
     padding: 15px 20px;
@@ -37,7 +33,6 @@ body {
     color: black;
 }
 
-/* Form Container */
 .content-wrapper {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 40px;
@@ -78,7 +73,6 @@ body {
     font-size: 16px;
 }
 
-/* Submit Button */
 .btn-submit {
     background-color: #2F6755;
     color: white;
@@ -94,7 +88,6 @@ body {
     background-color: #419E98;
 }
 
-/* Register Link */
 .register-link {
     text-align: center;
     margin-top: 15px;
@@ -110,7 +103,6 @@ body {
     text-decoration: underline;
 }
 
-/* Footer */
 footer {
     background-color: #2F6755;
     color: white;
@@ -118,3 +110,12 @@ footer {
     padding: 10px;
     width: 100%;
 }
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+

@@ -5,17 +5,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Diabetes Predictor</title>
     
-    <!-- Link to external CSS file -->
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 </head>
 <body>
+    <!-- Navigation -->
     <div class="navbar">
         <div class="navbar-links">
             {% if user.is_authenticated %}
                 <a href="{% url 'profile' %}">Profile</a>
-                <a href="{% url 'predict' %}">Predict Diabetes</a>
+                <a href="{% url 'predict' %}">Predict</a>
                 <a href="{% url 'logout' %}">Logout</a>
             {% else %}
                 <a href="{% url 'login' %}">Login</a>
@@ -24,17 +29,20 @@
         </div>
     </div>
 
+    <!-- Hero Section -->
     <div class="container">
-        <h1>Welcome!</h1>
-        <p>Your health is important! Log in to check your health predictions.</p>
+        <h1>Stay Ahead of Your Health</h1>
+        <p>Register to Learn About Your Diabetes Risk</p>
     </div>
 
+    <!-- CTA Button -->
     <div class="btn-container">
         {% if not user.is_authenticated %}
-            <p><a href="{% url 'register' %}" class="btn-custom">Register Now</a></p>
+            <a href="{% url 'register' %}" class="btn-custom">Get Started</a>
         {% endif %}
     </div>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Diabetes Prediction App</p>
     </footer>
