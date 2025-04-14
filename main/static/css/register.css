@@ -1,6 +1,3 @@
-/* styles.css */
-
-/* General Body Styles */
 body {
     background-image: url("../images/login_register.jpg");
     background-size: cover;
@@ -15,7 +12,6 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar Styles */
 .navbar {
     background-color: #2F6755;
     padding: 15px 20px;
@@ -36,7 +32,6 @@ body {
     color: black;
 }
 
-/* Form Container */
 .content-wrapper {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 40px;
@@ -53,7 +48,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Form Group */
 .form-group {
     margin-bottom: 15px;
 }
@@ -75,14 +69,12 @@ input[type="password"] {
     box-sizing: border-box;
 }
 
-/* Error Message */
 .error-message {
     color: red;
     font-size: 14px;
     margin-top: 5px;
 }
 
-/* Submit Button */
 .btn-submit {
     background-color: #2F6755;
     color: white;
@@ -98,7 +90,6 @@ input[type="password"] {
     background-color: #419E98;
 }
 
-/* Login Link */
 .login-link {
     text-align: center;
     margin-top: 20px;
@@ -114,7 +105,6 @@ input[type="password"] {
     text-decoration: underline;
 }
 
-/* Footer */
 footer {
     background-color: #2F6755;
     color: white;
@@ -123,7 +113,6 @@ footer {
     margin-top: auto;
 }
 
-/* Responsive Design */
 @media (max-width: 500px) {
     .content-wrapper {
         padding: 20px;
