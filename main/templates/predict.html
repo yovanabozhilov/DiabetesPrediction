@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diabetes Prediction</title>
 
-    <!-- Link to external CSS file -->
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% static 'css/predict.css' %}">
 </head>
@@ -31,7 +30,6 @@
         <div class="form-container">
             <h1>Diabetes Prediction</h1>
 
-            <!-- Form for user input -->
             <form action="{% url 'result' %}" method="get">
                 {% csrf_token %}
 
