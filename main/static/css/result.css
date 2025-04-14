@@ -1,4 +1,3 @@
-/* General Body Styles */
 body {
     background-image: url("../images/home.jpg");
     background-size: cover;
@@ -11,7 +10,6 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar Styles */
 .navbar {
     background-color: #2F6755;
     padding: 15px 20px;
@@ -32,7 +30,6 @@ body {
     color: black;
 }
 
-/* Content Wrapper */
 .content-wrapper {
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.9);
@@ -49,7 +46,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Result Text */
 .result-text {
     text-align: center;
     color: #2F6755;
@@ -58,7 +54,6 @@ body {
     margin-top: 20px;
 }
 
-/* Accuracy Text */
 .accuracy-text {
     text-align: center;
     color: #007872;
@@ -66,7 +61,6 @@ body {
     margin-top: 10px;
 }
 
-/* Health Advice */
 .health-advice {
     margin-top: 30px;
 }
@@ -86,7 +80,6 @@ body {
     margin-bottom: 8px;
 }
 
-/* Result Button (Make Another Prediction) */
 .btn-add {
     display: inline-block;
     background-color: #2F6755;
@@ -104,7 +97,6 @@ body {
     background-color: #419E98;
 }
 
-/* Footer */
 footer {
     background-color: #2F6755;
     color: white;
@@ -113,7 +105,6 @@ footer {
     width: 100%;
 }
 
-/* Responsive Design */
 @media (max-width: 500px) {
     .content-wrapper {
         padding: 20px;
