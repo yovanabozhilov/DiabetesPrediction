@@ -15,7 +15,6 @@ from .forms import UserRegistrationForm, UserLoginForm, PredictionForm
 logger = logging.getLogger(__name__)
 
 def load_model():
-    """Load the trained model and preprocessor."""
     with open(r'C:\workspace\DiabetesPrediction\predictor\diabetes_model.pkl', 'rb') as file:
         data = pickle.load(file)
     return data['model'], data['preprocessor'], data['accuracy']
@@ -33,11 +32,9 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            # Log successful registration with the user's username and IP
             logger.info(f"User registered successfully: {user.username} from IP: {get_client_ip(request)}")
             return redirect('profile')
         else:
-            # Log invalid form submission with the IP address
             logger.warning(f"Registration failed: Invalid form submission from IP: {get_client_ip(request)} — errors: {form.errors}")
             messages.error(request, "Registration failed. Please check your input and try again.")
     else:
@@ -87,13 +84,11 @@ def predict(request):
 @login_required
 def result(request):
     try:
-        # Load the trained model and accuracy
         with open(r'C:\workspace\DiabetesPrediction\predictor\diabetes_model.pkl', 'rb') as file:
             data = pickle.load(file)
         model = data['model']
         accuracy = data['accuracy']
 
-        # Extract form data (assumes query params: n1=..., n2=...)
         form_data = {
             'Pregnancies': request.GET.get('n1', ''),
             'Glucose': request.GET.get('n2', ''),
@@ -105,7 +100,6 @@ def result(request):
             'Age': request.GET.get('n8', '')
         }
 
-        # Prepare the values list and log the inputs
         values = []
         for key in form_data:
             raw_val = form_data[key]
@@ -116,15 +110,12 @@ def result(request):
                 val = 0
             values.append(val)
 
-        # Log the input data for prediction
         input_df = pd.DataFrame([values], columns=form_data.keys())
         logger.info(f"Prediction input for {request.user.username} from IP: {get_client_ip(request)}: {input_df.to_dict(orient='records')}")
 
-        # Make the prediction
         pred = model.predict(input_df)[0]
         result1 = "You are at a higher risk of developing diabetes." if pred == 1 else "You are at a lower risk of developing diabetes."
 
-        # Save the result in the database
         UserResult.objects.create(
             user=request.user,
             pregnancies=input_df.at[0, 'Pregnancies'],
@@ -139,16 +130,13 @@ def result(request):
             accuracy=round(accuracy * 100, 2)
         )
 
-        # Log the result saving
         logger.info(f"Prediction saved for {request.user.username} from IP: {get_client_ip(request)}: {result1} (Accuracy: {round(accuracy * 100, 2)}%)")
 
-        # Generate health advice and graphs
         advice = get_health_advice(values)
         insulin_graph_html = generate_insulin_graph(values)
         bp_graph_html = generate_bp_graph(values)
         bmi_graph_html = generate_bmi_graph(values)
 
-        # Return the result view with the context
         return render(request, 'result.html', {
             "result2": result1,
             "accuracy": round(accuracy * 100, 2),
@@ -160,13 +148,10 @@ def result(request):
         })
 
     except Exception as e:
-        # Log the error
         logger.error(f"Error during prediction processing for {request.user.username} from IP: {get_client_ip(request)}: {str(e)}", exc_info=True)
 
-        # Show error message to the user
         messages.error(request, "An unexpected error occurred while processing your prediction. Please try again later.")
         
-        # Redirect the user back to the prediction page
         return redirect('predict')
 
 
@@ -174,10 +159,8 @@ def result(request):
 def profile(request):
     user_results = UserResult.objects.filter(user=request.user)
 
-    # Generate health advice for each result
     results_with_advice = []
     for result in user_results:
-        # Gather the values from the result
         values = [
             result.pregnancies,
             result.glucose,
@@ -189,10 +172,8 @@ def profile(request):
             result.age
         ]
         
-        # Get the health advice for the prediction result
         advice = get_health_advice(values)
 
-        # Attach the health advice to the result
         results_with_advice.append({
             'result': result,
             'advice': advice
@@ -222,5 +203,5 @@ def logout_view(request):
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
-        return x_forwarded_for.split(',')[0]  # First IP in the list
+        return x_forwarded_for.split(',')[0] 
     return request.META.get('REMOTE_ADDR')
