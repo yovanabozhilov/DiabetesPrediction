@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
 
-    <!-- Link to external CSS file -->
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 </head>
@@ -31,7 +30,6 @@
         <div class="form-container">
             <h1>Welcome Back!</h1>
             
-            <!-- Display error messages from the messages framework -->
             {% if messages %}
                 <div class="error-messages">
                     {% for message in messages %}
