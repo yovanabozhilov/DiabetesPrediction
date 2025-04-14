@@ -7,7 +7,6 @@ body {
                 url("../images/home.jpg") center center / cover no-repeat fixed;
 }
 
-/* Navbar Styles */
 .navbar {
     background-color: #2F6755;
     padding: 15px 20px;
@@ -29,7 +28,6 @@ body {
     color: #000000;
 }
 
-/* Container Styles */
 .container {
     text-align: center;
     padding: 120px 20px 40px;
@@ -50,7 +48,6 @@ body {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* CTA Button */
 .btn-container {
     text-align: center;
     margin-top: 40px;
@@ -72,7 +69,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Footer */
 footer {
     background-color: #2F6755;
     color: #f0f0f0;
@@ -84,7 +80,6 @@ footer {
     width: 100%;
 }
 
-/* Responsive */
 @media screen and (max-width: 768px) {
     .navbar {
         flex-direction: column;
