@@ -7,15 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diabetes Predictor</title>
     
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
-    <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <!-- Navigation -->
     <div class="navbar">
         <div class="navbar-links">
             {% if user.is_authenticated %}
@@ -29,20 +26,17 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
     <div class="container">
         <h1>Stay Ahead of Your Health</h1>
         <p>Register to Learn About Your Diabetes Risk</p>
     </div>
 
-    <!-- CTA Button -->
     <div class="btn-container">
         {% if not user.is_authenticated %}
             <a href="{% url 'register' %}" class="btn-custom">Get Started</a>
         {% endif %}
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Diabetes Prediction App</p>
     </footer>
