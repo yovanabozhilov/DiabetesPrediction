@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile - Diabetes Prediction</title>
 
-    <!-- Link to External CSS File -->
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <script src="{% static 'js/profile.js' %}"></script>
@@ -21,7 +20,6 @@
         <a href="{% url 'profile' %}" class="active">Profile</a>
         <a href="{% url 'logout' %}">Logout</a>
 
-        <!-- PDF Download Button on the Right -->
         <div style="margin-left: auto;">
             <a href="{% url 'export_pdf' %}" class="btn-download">Download</a>
         </div>
@@ -46,7 +44,6 @@
                         <td>{{ item.result.result_date|date:"Y-m-d H:i" }}</td>
                         <td>{{ item.result.prediction }}</td>
                         <td>
-                            <!-- Updated view button styling -->
                             <button class="view-btn" onclick="toggleDetails('details-{{ forloop.counter }}')">View</button>
                         </td>
                         <td>
@@ -58,7 +55,6 @@
                     </tr>
                     <tr id="details-{{ forloop.counter }}" style="display: none;">
                         <td colspan="4">
-                            <!-- Updated details section -->
                             <div class="details-container">
                                 <strong>Input Information</strong>
                                 <ul>
@@ -72,7 +68,6 @@
                                     <li>Age: {{ item.result.age }}</li>
                                 </ul>
 
-                                <!-- Health Advice -->
                                 <strong>Health Summary</strong>
                                 <ul>
                                     {% for advice in item.advice %}
@@ -93,7 +88,6 @@
             </div>
         {% endif %}
 
-        <!-- Always show Add button -->
         <div style="text-align: center; margin-top: 20px;">
             <a href="{% url 'predict' %}" class="btn-add">Add New Prediction</a>
         </div>
