@@ -34,10 +34,8 @@ def generate_pdf(user):
         elements.append(Paragraph("No predictions available.", styles['BodyText']))
     else:
         for result in user_results:
-            # Convert result date to the user's local time
             local_result_date = timezone.localtime(result.result_date)
 
-            # Table headers and structure with proper padding
             data = [
                 ["Date", "Prediction", "Accuracy (%)"],
                 

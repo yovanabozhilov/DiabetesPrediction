@@ -1,23 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-import pandas as pd
-import pickle
+from django.contrib.messages import get_messages
 import logging
 from .services.pdf_export import generate_pdf  
 from .services.health_advice import get_health_advice
 from .services.graphs import generate_insulin_graph, generate_bp_graph, generate_bmi_graph  
 from .models import UserResult
 from .forms import UserRegistrationForm, UserLoginForm, PredictionForm
+from .services.model_handler import get_prediction
 
 logger = logging.getLogger(__name__)
-
-def load_model():
-    with open(r'C:\workspace\DiabetesPrediction\predictor\diabetes_model.pkl', 'rb') as file:
-        data = pickle.load(file)
-    return data['model'], data['preprocessor'], data['accuracy']
 
 @login_required
 def export_pdf(request):
@@ -43,6 +37,7 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 def login_view(request):
+    list(get_messages(request)) 
     if request.method == 'POST':
         form = UserLoginForm(request=request, data=request.POST)
         if form.is_valid():
@@ -66,7 +61,6 @@ def login_view(request):
 
     return render(request, 'login.html', {'form': form})
 
-
 @login_required
 def predict(request):
     if request.method == 'POST':
@@ -80,15 +74,9 @@ def predict(request):
         form = PredictionForm()  
         return render(request, 'predict.html', {'form': form})
 
-
 @login_required
 def result(request):
     try:
-        with open(r'C:\workspace\DiabetesPrediction\predictor\diabetes_model.pkl', 'rb') as file:
-            data = pickle.load(file)
-        model = data['model']
-        accuracy = data['accuracy']
-
         form_data = {
             'Pregnancies': request.GET.get('n1', ''),
             'Glucose': request.GET.get('n2', ''),
@@ -100,37 +88,23 @@ def result(request):
             'Age': request.GET.get('n8', '')
         }
 
-        values = []
-        for key in form_data:
-            raw_val = form_data[key]
-            try:
-                val = float(raw_val.strip()) if raw_val.strip() else 0
-            except ValueError:
-                logger.warning(f"Invalid input for {key}: '{raw_val}'. Defaulting to 0.")
-                val = 0
-            values.append(val)
-
-        input_df = pd.DataFrame([values], columns=form_data.keys())
-        logger.info(f"Prediction input for {request.user.username} from IP: {get_client_ip(request)}: {input_df.to_dict(orient='records')}")
-
-        pred = model.predict(input_df)[0]
-        result1 = "You are at a higher risk of developing diabetes." if pred == 1 else "You are at a lower risk of developing diabetes."
+        prediction, values, accuracy = get_prediction(form_data)
 
         UserResult.objects.create(
             user=request.user,
-            pregnancies=input_df.at[0, 'Pregnancies'],
-            glucose=input_df.at[0, 'Glucose'],
-            blood_pressure=input_df.at[0, 'BloodPressure'],
-            skin_thickness=input_df.at[0, 'SkinThickness'],
-            insulin=input_df.at[0, 'Insulin'],
-            bmi=input_df.at[0, 'BMI'],
-            diabetes_pedigree=input_df.at[0, 'DiabetesPedigreeFunction'],
-            age=input_df.at[0, 'Age'],
-            prediction=result1,
+            pregnancies=values[0],
+            glucose=values[1],
+            blood_pressure=values[2],
+            skin_thickness=values[3],
+            insulin=values[4],
+            bmi=values[5],
+            diabetes_pedigree=values[6],
+            age=values[7],
+            prediction=prediction,
             accuracy=round(accuracy * 100, 2)
         )
 
-        logger.info(f"Prediction saved for {request.user.username} from IP: {get_client_ip(request)}: {result1} (Accuracy: {round(accuracy * 100, 2)}%)")
+        logger.info(f"Prediction saved for {request.user.username} from IP: {get_client_ip(request)}: {prediction} (Accuracy: {round(accuracy * 100, 2)}%)")
 
         advice = get_health_advice(values)
         insulin_graph_html = generate_insulin_graph(values)
@@ -138,7 +112,7 @@ def result(request):
         bmi_graph_html = generate_bmi_graph(values)
 
         return render(request, 'result.html', {
-            "result2": result1,
+            "result2": prediction,
             "accuracy": round(accuracy * 100, 2),
             "form_data": form_data,
             "insulin_graph_html": insulin_graph_html,
@@ -148,12 +122,9 @@ def result(request):
         })
 
     except Exception as e:
-        logger.error(f"Error during prediction processing for {request.user.username} from IP: {get_client_ip(request)}: {str(e)}", exc_info=True)
-
+        logger.error(f"Error during prediction for {request.user.username} from IP: {get_client_ip(request)}: {str(e)}", exc_info=True)
         messages.error(request, "An unexpected error occurred while processing your prediction. Please try again later.")
-        
         return redirect('predict')
-
 
 @login_required
 def profile(request):
@@ -181,7 +152,6 @@ def profile(request):
 
     return render(request, 'profile.html', {'results_with_advice': results_with_advice})
 
-
 @login_required
 def delete_prediction(request, result_id):
     try:
@@ -198,6 +168,9 @@ def delete_prediction(request, result_id):
 def logout_view(request):
     logger.info(f"User logged out: {request.user.username} from IP: {get_client_ip(request)}")
     logout(request)
+
+    list(get_messages(request))
+
     return redirect('home')
 
 def get_client_ip(request):

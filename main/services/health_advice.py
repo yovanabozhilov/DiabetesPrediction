@@ -15,7 +15,6 @@ def get_health_advice(values):
     if age > 45:
         advice.append("You are over 45 years old, and it's essential to monitor your health regularly.")
 
-    # If there is no advice, provide a positive default message
     if not advice:
         advice.append("Your health seems great! Keep up the good work.")
 
