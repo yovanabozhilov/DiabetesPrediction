@@ -21,8 +21,8 @@ This project is a machine learning-based web application for predicting diabetes
 ## Installation & Setup
 ### Prerequisites
 Ensure you have the following installed:
-- Python 3.10+
-- Django 5.1+
+- Python 3.12.7+
+- Django
 - Virtualenv (optional but recommended)
 - Git
 
